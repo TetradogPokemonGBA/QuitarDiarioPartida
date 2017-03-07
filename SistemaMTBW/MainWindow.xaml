@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistemaMTBW"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Sistema MT Blanco y Negro" Height="154.674" Width="181.941" WindowStyle="ToolWindow" ResizeMode="CanMinimize">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="79*"/>
+            <RowDefinition Height="31*"/>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="Cargar Rom" Click="MenuItem_Click_1" />
+            <MenuItem Header="   "/>
+            <MenuItem Header="Sobre" Click="MenuItem_Click"/>
+        </Menu>
+        <Image x:Name="imgDecoración" Grid.Row="1"/>
+        <Button x:Name="btnPonerOQuitar" Grid.Row="2" Content="Poner Sistema MT BW!" IsEnabled="False" Click="btnPonerOQuitar_Click"/>
     </Grid>
 </Window>
