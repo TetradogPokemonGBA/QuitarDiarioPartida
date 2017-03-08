@@ -1,4 +1,5 @@
-﻿using Gabriel.Cat.Extension;
+﻿using Gabriel.Cat;
+using Gabriel.Cat.Extension;
 using Microsoft.Win32;
 using PokemonGBAFrameWork;
 using System;
@@ -32,7 +33,7 @@ namespace SistemaMTBW
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Desarrollado por Pikachu240 investigado por FBI y BLAx501! ","Sobre la App");
+            MessageBox.Show("Esta aplicación pone el sistema de MT de Blanco y Negro que simplemente hace que no se gasten las MT cuando se usen.\n\nBug conocido: solo se gastan si se cancela la animación de aprender la MT\n\nDesarrollado por Pikachu240 investigado por FBI y BLAx501! ","Sobre la App");
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -44,11 +45,7 @@ namespace SistemaMTBW
                 if (opnRom.ShowDialog().GetValueOrDefault())
                 {
                     rom = new RomGBA(opnRom.FileName);
-                    if (PokemonGBAFrameWork.SistemaMTBW.EstaActivadoElNuevoSistema(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom)))
-                    {
-                        PonTexto(true);
-                    }
-                    else PonTexto(false);
+                    PonTexto();
                     btnPonerOQuitar.IsEnabled = true;
                     switch(Edicion.GetEdicion(rom).AbreviacionRom)
                     {
@@ -75,9 +72,9 @@ namespace SistemaMTBW
             }
         }
 
-        private void PonTexto(bool seTieneQueDesActivar)
+        private void PonTexto()
         {
-           if(seTieneQueDesActivar)
+           if(PokemonGBAFrameWork.SistemaMTBW.EstaActivadoElNuevoSistema(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom)))
             {
                 btnPonerOQuitar.Content = "Volver al sistema anterior";
             }
@@ -92,13 +89,14 @@ namespace SistemaMTBW
             if (PokemonGBAFrameWork.SistemaMTBW.EstaActivadoElNuevoSistema(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom)))
             {
                 PokemonGBAFrameWork.SistemaMTBW.DesactivarNuevoSistema(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom));
-                PonTexto(false);
+             
             }
             else
             {
                 PokemonGBAFrameWork.SistemaMTBW.ActivarNuevoSistema(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom));
-                PonTexto(true);
+   
             }
+            PonTexto();
             rom.Guardar();
         }
     }
