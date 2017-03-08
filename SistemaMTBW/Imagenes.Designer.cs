@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SistemaMTBW {
+namespace MOSinMedallas {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SistemaMTBW {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SistemaMTBW.Imagenes", typeof(Imagenes).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MOSinMedallas.Imagenes", typeof(Imagenes).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

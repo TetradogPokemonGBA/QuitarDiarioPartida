@@ -18,7 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SistemaMTBW
+namespace MOSinMedallas
 {
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
@@ -33,7 +33,7 @@ namespace SistemaMTBW
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Esta aplicación pone el sistema de MT de Blanco y Negro que simplemente hace que no se gasten las MT cuando se usen.\n\nBug conocido: solo se gastan si se cancela la animación de aprender la MT\n\nDesarrollado por Pikachu240 investigado por FBI y BLAx501! ","Sobre la App");
+            MessageBox.Show("Esta aplicación desactiva la comprovación de las medallas para poder usar una MO \n\nDesarrollado por Pikachu240 investigado por Dani_SR_17", "Sobre la App");
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -74,26 +74,26 @@ namespace SistemaMTBW
 
         private void PonTexto()
         {
-           if(PokemonGBAFrameWork.SistemaMTBW.EstaActivadoElNuevoSistema(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom)))
+           if(PokemonGBAFrameWork.MOSinMedallas.EstaActivado(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom)))
             {
-                btnPonerOQuitar.Content = "Volver al sistema anterior";
+                btnPonerOQuitar.Content = "Volver MO con medallas";
             }
            else
             {
-                btnPonerOQuitar.Content = "Poner Sistema MT BW!";
+                btnPonerOQuitar.Content = "Poner MO sin MEDALLAS!";
             }
         }
 
         private void btnPonerOQuitar_Click(object sender, RoutedEventArgs e)
         {
-            if (PokemonGBAFrameWork.SistemaMTBW.EstaActivadoElNuevoSistema(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom)))
+            if (PokemonGBAFrameWork.MOSinMedallas.EstaActivado(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom)))
             {
-                PokemonGBAFrameWork.SistemaMTBW.DesactivarNuevoSistema(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom));
+                PokemonGBAFrameWork.MOSinMedallas.Desactivar(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom));
              
             }
             else
             {
-                PokemonGBAFrameWork.SistemaMTBW.ActivarNuevoSistema(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom));
+                PokemonGBAFrameWork.MOSinMedallas.Activar(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom));
    
             }
             PonTexto();
