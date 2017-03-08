@@ -33,7 +33,7 @@ namespace MOSinMedallas
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Esta aplicación desactiva la comprovación de las medallas para poder usar una MO \n\nDesarrollado por Pikachu240 investigado por Dani_SR_17", "Sobre la App");
+            MessageBox.Show("Esta aplicación desactiva la comprovación de las medallas para poder usar una MO \n\nDesarrollado por Pikachu240 investigado por CryStal Kaktus", "Sobre la App");
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
