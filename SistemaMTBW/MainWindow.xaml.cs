@@ -49,13 +49,13 @@ namespace MOSinMedallas
 				rom = new RomGba(opnRom.FileName);
 				edicion=EdicionPokemon.GetEdicionPokemon(rom);
 				compilacion=Compilacion.GetCompilacion(rom,edicion);
-				PonTexto();
+				
 				btnPonerOQuitar.IsEnabled = true;
 				switch(edicion.AbreviacionRom)
 				{
 
-						case AbreviacionCanon.BPR: imgDecoración.SetImage(BorrarMos.Imagenes.PokeballRojoFuego); break;
-						case AbreviacionCanon.BPG: imgDecoración.SetImage(BorrarMos.Imagenes.PokeballVerdeHoja); break;
+						case AbreviacionCanon.BPR: imgDecoración.SetImage(BorrarMos.Imagenes.PokeballRojoFuego); PonTexto(); break;
+						case AbreviacionCanon.BPG: imgDecoración.SetImage(BorrarMos.Imagenes.PokeballVerdeHoja); PonTexto(); break;
 						default:MessageBox.Show("No hay diario en esta edición..."); btnPonerOQuitar.IsEnabled=false;break;
 				}
 			}
