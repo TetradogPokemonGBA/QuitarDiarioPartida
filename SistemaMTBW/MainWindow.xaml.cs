@@ -35,7 +35,7 @@ namespace MOSinMedallas
 
 		private void MenuItem_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBox.Show("Esta aplicación permite inGAME poder borrar una  MO como un ataque más \n\nDesarrollado por Pikachu240 investigado por JPAN", "Sobre la App");
+			MessageBox.Show("Esta aplicación permite quitar el diario de la partida \n\nDesarrollado por Pikachu240 investigado por Darthatron", "Sobre la App");
 		}
 
 		private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -52,11 +52,10 @@ namespace MOSinMedallas
 				btnPonerOQuitar.IsEnabled = true;
 				switch(edicion.AbreviacionRom)
 				{
-						case AbreviacionCanon.BPE:imgDecoración.SetImage(BorrarMos.Imagenes.PokeballEsmeralda);break;
+
 						case AbreviacionCanon.BPR: imgDecoración.SetImage(BorrarMos.Imagenes.PokeballRojoFuego); break;
 						case AbreviacionCanon.BPG: imgDecoración.SetImage(BorrarMos.Imagenes.PokeballVerdeHoja); break;
-						case AbreviacionCanon.AXV: imgDecoración.SetImage(BorrarMos.Imagenes.PokeballRuby); break;
-						case AbreviacionCanon.AXP: imgDecoración.SetImage(BorrarMos.Imagenes.PokeballZafiro); break;
+						default:MessageBox.Show("No hay diario en esta edición..."); btnPonerOQuitar.IsEnabled=false;break;
 				}
 			}
 			else if(rom!=null)
@@ -71,26 +70,26 @@ namespace MOSinMedallas
 
 		private void PonTexto()
 		{
-			if(PokemonGBAFrameWork.BorrarMos.EstaActivado(rom,edicion,compilacion))
+			if(PokemonGBAFrameWork.QuitarDiarioPartida.EstaActivado(rom,edicion,compilacion))
 			{
-				btnPonerOQuitar.Content = "MOs IMBORRABLES";
+				btnPonerOQuitar.Content = "Poner diario partida";
 			}
 			else
 			{
-				btnPonerOQuitar.Content = "MOs Olvidables";
+				btnPonerOQuitar.Content = "Quitar diario partida";
 			}
 		}
 
 		private void btnPonerOQuitar_Click(object sender, RoutedEventArgs e)
 		{
-			if (PokemonGBAFrameWork.BorrarMos.EstaActivado(rom,edicion,compilacion))
+			if (PokemonGBAFrameWork.QuitarDiarioPartida.EstaActivado(rom,edicion,compilacion))
 			{
-				PokemonGBAFrameWork.BorrarMos.Desactivar(rom, edicion,compilacion);
+				PokemonGBAFrameWork.QuitarDiarioPartida.Desactivar(rom, edicion,compilacion);
 				
 			}
 			else
 			{
-				PokemonGBAFrameWork.BorrarMos.Activar(rom, edicion,compilacion);
+				PokemonGBAFrameWork.QuitarDiarioPartida.Activar(rom, edicion,compilacion);
 				
 			}
 			PonTexto();
