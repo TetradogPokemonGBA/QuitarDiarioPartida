@@ -25,7 +25,9 @@ namespace MOSinMedallas
     /// </summary>
     public partial class MainWindow : Window
     {
-        RomGBA rom;
+        RomGba rom;
+        EdicionPokemon edicion;
+        Compilacion compilacion;
         public MainWindow()
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace MOSinMedallas
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Esta aplicación desactiva la comprovación de las medallas para poder usar una MO \n\nDesarrollado por Pikachu240 investigado por CryStal Kaktus", "Sobre la App");
+            MessageBox.Show("Esta aplicación permite inGAME poder borrar una  MO como un ataque más \n\nDesarrollado por Pikachu240 investigado por JPAN", "Sobre la App");
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
@@ -44,16 +46,18 @@ namespace MOSinMedallas
             {
                 if (opnRom.ShowDialog().GetValueOrDefault())
                 {
-                    rom = new RomGBA(opnRom.FileName);
+                    rom = new RomGba(opnRom.FileName);
+                    edicion=EdicionPokemon.GetEdicionPokemon(rom);
+                    compilacion=Compilacion.GetCompilacion(rom,edicion);
                     PonTexto();
                     btnPonerOQuitar.IsEnabled = true;
-                    switch(Edicion.GetEdicion(rom).AbreviacionRom)
+                    switch(edicion.AbreviacionRom)
                     {
-                        case Edicion.ABREVIACIONESMERALDA:imgDecoración.SetImage(Imagenes.PokeballEsmeralda);break;
-                        case Edicion.ABREVIACIONROJOFUEGO: imgDecoración.SetImage(Imagenes.PokeballRojoFuego); break;
-                        case Edicion.ABREVIACIONVERDEHOJA: imgDecoración.SetImage(Imagenes.PokeballVerdeHoja); break;
-                        case Edicion.ABREVIACIONRUBI: imgDecoración.SetImage(Imagenes.PokeballRuby); break;
-                        case Edicion.ABREVIACIONZAFIRO: imgDecoración.SetImage(Imagenes.PokeballZafiro); break;
+                        case AbreviacionCanon.BPE:imgDecoración.SetImage(Imagenes.PokeballEsmeralda);break;
+                        case AbreviacionCanon.BPR: imgDecoración.SetImage(Imagenes.PokeballRojoFuego); break;
+                        case AbreviacionCanon.BPG: imgDecoración.SetImage(Imagenes.PokeballVerdeHoja); break;
+                        case AbreviacionCanon.AXV: imgDecoración.SetImage(Imagenes.PokeballRuby); break;
+                        case AbreviacionCanon.AXP: imgDecoración.SetImage(Imagenes.PokeballZafiro); break;
                     }
                 }
                 else if(rom!=null)
@@ -74,7 +78,7 @@ namespace MOSinMedallas
 
         private void PonTexto()
         {
-           if(PokemonGBAFrameWork.MOSinMedallas.EstaActivado(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom)))
+        	if(PokemonGBAFrameWork.BorrarMos.EstaActivado(rom,edicion,compilacion))
             {
                 btnPonerOQuitar.Content = "Volver MO con medallas";
             }
@@ -86,18 +90,18 @@ namespace MOSinMedallas
 
         private void btnPonerOQuitar_Click(object sender, RoutedEventArgs e)
         {
-            if (PokemonGBAFrameWork.MOSinMedallas.EstaActivado(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom)))
+            if (PokemonGBAFrameWork.BorrarMos.EstaActivado(rom,edicion,compilacion))
             {
-                PokemonGBAFrameWork.MOSinMedallas.Desactivar(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom));
+                PokemonGBAFrameWork.BorrarMos.Desactivar(rom, edicion,compilacion);
              
             }
             else
             {
-                PokemonGBAFrameWork.MOSinMedallas.Activar(rom, Edicion.GetEdicion(rom), CompilacionRom.GetCompilacion(rom));
+                PokemonGBAFrameWork.BorrarMos.Activar(rom, edicion,compilacion);
    
             }
             PonTexto();
-            rom.Guardar();
+            rom.Save();
         }
     }
 }
