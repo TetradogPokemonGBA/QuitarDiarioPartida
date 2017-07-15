@@ -35,7 +35,8 @@ namespace MOSinMedallas
 
 		private void MenuItem_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBox.Show("Esta aplicación permite quitar el diario de la partida \n\nDesarrollado por Pikachu240 investigado por Darthatron", "Sobre la App");
+			if(MessageBox.Show("Esta aplicación permite quitar el diario de la partida \n\nDesarrollado por Pikachu240 investigado por Darthatron\nQuieres ver el codigo fuente?", "Sobre la App",MessageBoxButton.YesNo,MessageBoxImage.Information)==MessageBoxResult.Yes)
+				System.Diagnostics.Process.Start("https://github.com/TetradogPokemonGBA/QuitarDiarioPartida");
 		}
 
 		private void MenuItem_Click_1(object sender, RoutedEventArgs e)
