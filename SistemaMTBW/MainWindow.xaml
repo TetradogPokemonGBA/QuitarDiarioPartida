@@ -21,6 +21,6 @@
             <MenuItem Header="Sobre" Click="MenuItem_Click"/>
         </Menu>
         <Image x:Name="imgDecoración" Grid.Row="1"/>
-        <Button x:Name="btnPonerOQuitar" Grid.Row="2" Content="Poner MO sin Medallas!" IsEnabled="False" Click="btnPonerOQuitar_Click"/>
+        <Button x:Name="btnPonerOQuitar" Grid.Row="2" Content="MOs Olvidables" IsEnabled="False" Click="btnPonerOQuitar_Click"/>
     </Grid>
 </Window>
